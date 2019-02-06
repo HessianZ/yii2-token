@@ -6,7 +6,7 @@ use Yii;
 
 class Module extends \yii\base\Module
 {
-    public $controllerNamespace = 'yiier\token\controllers';
+    public $controllerNamespace = 'hessian\yii\token\controllers';
 
     public function init()
     {

@@ -52,7 +52,7 @@ class Token extends ActiveRecord
             [['user_id'], 'required'],
             [['user_id', 'status', 'created_at', 'updated_at', 'expired_at'], 'integer'],
             [['group'], 'string', 'max' => 20],
-            [['group', 'value'], 'unique', 'targetClass' => '\hessian\yii\token\models\Token', 'message' => 'Token already exists'],
+            [['group', 'value'], 'unique', 'targetAttribute' => ['group', 'value'], 'targetClass' => '\hessian\yii\token\models\Token', 'message' => 'Token already exists'],
         ];
     }
 

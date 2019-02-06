@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'attribute' => 'ip',
                 'value' => function ($data) {
-                    return $data->ip;
+                    return long2ip($data->ip);
                 },
             ],
             'created_at:datetime',

@@ -28,7 +28,7 @@ class Token
         $model->user_id = $userId;
         $model->group = $group ?: $this->defaultGroup;
         $model->expired_at = time() + $this->defaultTimeout;
-        $model->ip = \Yii::$app->request->userIP;
+        $model->ip = ip2long(\Yii::$app->request->userIP);
         $model->value = $this->generateTokenString();
         $ret = $model->save();
         \Yii::info("CreateToken - UID:$userId GROUP:$group TOKEN:$model->value", __METHOD__);
