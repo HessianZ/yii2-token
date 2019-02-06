@@ -44,6 +44,14 @@ Once the extension is installed, simply modify your application configuration as
 
 ```php
 return [
+    'components' => [
+        'token' => [
+            'class' => 'hessian\yii\token\Token',
+        ],
+    ],
+];
+
+return [
     'modules' => [
         'token' => [
             'class' => 'hessian\yii\token\Module',

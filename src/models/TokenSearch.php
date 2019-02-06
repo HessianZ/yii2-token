@@ -17,7 +17,7 @@ class TokenSearch extends Token
     public function rules()
     {
         return [
-            [['id', 'user_id', 'ip', 'status', 'expires_in', 'created_at', 'updated_at', 'expired_at'], 'integer'],
+            [['id', 'user_id', 'ip', 'status', 'created_at', 'updated_at', 'expired_at'], 'integer'],
             [['value', 'group'], 'safe'],
         ];
     }
@@ -62,7 +62,6 @@ class TokenSearch extends Token
         $query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'expires_in' => $this->expires_in,
             'ip' => $this->ip,
             'status' => $this->status,
             'created_at' => $this->created_at,
@@ -70,7 +69,7 @@ class TokenSearch extends Token
             'expired_at' => $this->expired_at,
         ]);
 
-        $query->andFilterWhere(['like', 'group', $this->provider])
+        $query->andFilterWhere(['like', 'group', $this->group])
             ->andFilterWhere(['like', 'value', $this->value]);
 
         return $dataProvider;

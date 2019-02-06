@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 //use kartik\icons\Icon;
-use yiier\token\models\Token;
+use hessian\yii\token\models\Token;
 
 /* @var $this yii\web\View */
 /* @var $searchModel yiier\token\models\TokenSearch */

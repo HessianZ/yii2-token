@@ -4,6 +4,7 @@ namespace hessian\yii\token\controllers;
 
 use Yii;
 use hessian\yii\token\models\Token;
+use hessian\yii\token\models\TokenSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
