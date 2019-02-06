@@ -1,10 +1,9 @@
 <?php
 
-namespace yiier\token\controllers;
+namespace hessian\yii\token\controllers;
 
 use Yii;
-use yiier\token\models\Token;
-use yiier\token\models\TokenSearch;
+use hessian\yii\token\models\Token;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

@@ -1,5 +1,5 @@
 {
-    "name": "yiier/yii2-token",
+    "name": "hessian/yii2-token",
     "description": "RESTful Token for Yii 2",
     "type": "yii2-extension",
     "keywords": ["yii2","extension","restful"],
@@ -8,6 +8,10 @@
         {
             "name": "forecho",
             "email": "caizhenghai@gmail.com"
+        },
+        {
+            "name": "hessian",
+            "email": "hess.4x@gmail.com"
         }
     ],
     "require": {
@@ -15,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "yiier\\token\\": "src"
+            "hessian\\yii\\token\\": "src"
         }
     }
 }

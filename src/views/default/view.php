@@ -29,8 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'user_id',
-            'username',
-            'provider',
+            'group',
             'value',
             'expires_in',
             'ip',

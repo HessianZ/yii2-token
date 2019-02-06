@@ -1,6 +1,6 @@
 <?php
 
-namespace yiier\token\models;
+namespace hessian\yii\token\models;
 
 use Yii;
 use yii\base\Model;
@@ -18,7 +18,7 @@ class TokenSearch extends Token
     {
         return [
             [['id', 'user_id', 'ip', 'status', 'expires_in', 'created_at', 'updated_at', 'expired_at'], 'integer'],
-            [['username', 'value', 'provider'], 'safe'],
+            [['value', 'group'], 'safe'],
         ];
     }
 
@@ -70,8 +70,7 @@ class TokenSearch extends Token
             'expired_at' => $this->expired_at,
         ]);
 
-        $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'provider', $this->provider])
+        $query->andFilterWhere(['like', 'group', $this->provider])
             ->andFilterWhere(['like', 'value', $this->value]);
 
         return $dataProvider;

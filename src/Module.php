@@ -1,6 +1,6 @@
 <?php
 
-namespace yiier\token;
+namespace hessian\yii\token;
 
 use Yii;
 
@@ -15,7 +15,7 @@ class Module extends \yii\base\Module
         if (!isset(Yii::$app->i18n->translations['token'])) {
             Yii::$app->i18n->translations['token'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
-                'basePath' => '@yiier/token/messages',
+                'basePath' => '@hessian/yii/token/messages',
                 'forceTranslation' => true,
                 'fileMap' => [
                     'token' => 'token.php',
