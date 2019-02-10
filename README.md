@@ -2,10 +2,10 @@ RESTful Token for Yii 2
 =======================
 RESTful Token for Yii 2
 
-[![Latest Stable Version](https://poser.pugx.org/hessian/yii2-token/v/stable)](https://packagist.org/packages/hessian/yii2-token) 
-[![Total Downloads](https://poser.pugx.org/hessian/yii2-token/downloads)](https://packagist.org/packages/hessian/yii2-token) 
-[![Latest Unstable Version](https://poser.pugx.org/hessian/yii2-token/v/unstable)](https://packagist.org/packages/hessian/yii2-token) 
-[![License](https://poser.pugx.org/hessian/yii2-token/license)](https://packagist.org/packages/hessian/yii2-token)
+[![Latest Stable Version](https://poser.pugx.org/HessianZ/yii2-token/v/stable)](https://packagist.org/packages/HessianZ/yii2-token) 
+[![Total Downloads](https://poser.pugx.org/HessianZ/yii2-token/downloads)](https://packagist.org/packages/HessianZ/yii2-token) 
+[![Latest Unstable Version](https://poser.pugx.org/HessianZ/yii2-token/v/unstable)](https://packagist.org/packages/HessianZ/yii2-token) 
+[![License](https://poser.pugx.org/HessianZ/yii2-token/license)](https://packagist.org/packages/HessianZ/yii2-token)
 
 Installation
 ------------
@@ -60,4 +60,4 @@ return [
 ];
 ```
 
-[More detail](/src/models/Token.php)
+[More detail](/src/Token.php)
