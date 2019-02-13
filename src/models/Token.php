@@ -21,6 +21,11 @@ use yii\db\ActiveRecord;
  */
 class Token extends ActiveRecord
 {
+    const STATUS_TEXT = [
+        '' => '全部',
+        self::STATUS_ACTIVE => '正常',
+        self::STATUS_DELETE => '禁用 ',
+    ];
     const STATUS_ACTIVE = 10;
     const STATUS_DELETE = 0;
 
@@ -38,7 +43,7 @@ class Token extends ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            TimestampBehavior::class,
         ];
     }
 
@@ -52,7 +57,7 @@ class Token extends ActiveRecord
             [['user_id'], 'required'],
             [['user_id', 'status', 'created_at', 'updated_at', 'expired_at'], 'integer'],
             [['group'], 'string', 'max' => 20],
-            [['group', 'value'], 'unique', 'targetAttribute' => ['group', 'value'], 'targetClass' => '\hessian\yii\token\models\Token', 'message' => 'Token already exists'],
+            [['group', 'value'], 'unique', 'targetAttribute' => ['group', 'value'], 'targetClass' => Token::class, 'message' => 'Token already exists'],
         ];
     }
 
@@ -78,7 +83,8 @@ class Token extends ActiveRecord
     /**
      * 返回当前未过期的 token
      * @param string $token
-     * @return Token|false
+     * @param string $group
+     * @return false|Token
      */
     public static function findActiveByToken($token, $group = 'default')
     {
@@ -93,7 +99,8 @@ class Token extends ActiveRecord
     /**
      * 返回当前用户使用的 token
      * @param int $userId
-     * @return Token|false
+     * @param string $group
+     * @return false|Token
      */
     public static function findActiveByUserId($userId, $group = 'default')
     {
@@ -104,12 +111,45 @@ class Token extends ActiveRecord
             ->one();
     }
 
-    public function getStatus()
+    public function getStatusText()
     {
-        return [
-            '' => '全部',
-            self::STATUS_ACTIVE => '正常',
-            self::STATUS_DELETE => '禁用 ',
-        ];
+        return self::STATUS_TEXT[$this->status];
     }
+
+    public function getUser()
+    {
+        return $this->hasOne(\common\models\User::class, ['id' => 'user_id']);
+    }
+
+    public function fields()
+    {
+        $fields = parent::fields();
+
+        $fields[] = 'statusText';
+
+        $fields['ip'] = function(Token $model) {
+            return long2ip($model->ip);
+        };
+
+
+        $fields['created_at'] = function(Token $model) {
+            return date('Y-m-d H:i:s', $model->created_at);
+        };
+
+        $fields['expired_at'] = $fields['updated_at'] = $fields['created_at'];
+
+
+        return $fields;
+    }
+
+    public function extraFields()
+    {
+        $fields = parent::extraFields();
+
+        $fields[] = 'user';
+
+        return $fields;
+    }
+
+
 }
