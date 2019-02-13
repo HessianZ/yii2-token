@@ -31,6 +31,7 @@ class Token
         $model->ip = ip2long(\Yii::$app->request->userIP);
         $model->value = $this->generateTokenString();
         $ret = $model->save();
+
         \Yii::info("CreateToken - UID:$userId GROUP:$group TOKEN:$model->value", __METHOD__);
 
         return $model;
@@ -53,6 +54,43 @@ class Token
           ->andWhere(['>', 'expired_at', time()])
           ->limit(1)
           ->one();
+    }
+
+    /**
+     * @param string $tokenStr Token value
+     * @return int|false
+     */
+    public function expireToken($tokenStr)
+    {
+        $conditions = ['token' => $tokenStr];
+        $token = models\Token::findOne($conditions);
+        if ($token) {
+            $token->status = models\Token::STATUS_DELETE;
+            \Yii::info("ExpireToken - UID:{$token->user_id} GROUP:{$token->group} TOKEN:{$token->value}", __METHOD__);
+            return $token->update();
+        } else {
+            \Yii::info("ExpireToken - Token not found '$tokenStr'", __METHOD__);
+            return false;
+        }
+    }
+
+    /**
+     * @param int $userId User ID
+     * @param string $group Token group, null for all
+     * @return int The number of rows updated
+     */
+    public function expireUserTokens($userId, $group = null)
+    {
+        $conditions = ['userId' => $userId];
+        if ($group) {
+            $conditions['group'] = $group;
+        }
+        $data = ['status' => models\Token::STATUS_DELETE, 'updated_at' => time()];
+        $expiredRows = models\Token::updateAll($data, $conditions);
+
+        \Yii::info("ExpireUserTokens - UserId:$userId Group:$group - Expired:$expiredRows", __METHOD__);
+
+        return $expiredRows;
     }
 
     public function generateTokenString()
