@@ -24,7 +24,7 @@ class Token extends ActiveRecord
     const STATUS_TEXT = [
         '' => '全部',
         self::STATUS_ACTIVE => '正常',
-        self::STATUS_DELETE => '禁用 ',
+        self::STATUS_DELETE => '禁用',
     ];
     const STATUS_ACTIVE = 10;
     const STATUS_DELETE = 0;
@@ -118,7 +118,7 @@ class Token extends ActiveRecord
 
     public function getUser()
     {
-        return $this->hasOne(\common\models\User::class, ['id' => 'user_id']);
+        return $this->hasOne(Yii::$app->getUser()->identityClass, ['id' => 'user_id']);
     }
 
     public function fields()
